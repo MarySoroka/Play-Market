@@ -1,0 +1,152 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,body {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color:rgb(227, 226, 222);
+}
+
+/* Style the header */
+header {
+  padding: 20px;
+  text-align: center;
+  font-size: 30px;
+  background-color: rgb(52, 130, 143);
+  color: rgb(227, 226, 222);
+
+}
+
+
+/* Container for flexboxes */
+section {
+  display: flex;
+  padding: 0;
+  min-height: 350px;
+}
+
+.__section-movies {
+  display: flex;
+  justify-content: flex-start;
+  align-content: center;
+  flex-wrap: wrap;
+}
+
+/* Style the navigation menu */
+nav {
+  flex: 1;
+  background: rgb(135, 176, 198);
+  padding: 10px;
+}
+
+nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  width: 70%;
+  background-color:rgb(135, 176, 198);
+}
+
+li a {
+  display: block;
+  color: rgb(75, 56, 39);
+  padding: 8px 16px;
+  text-decoration: none;
+}
+
+nav a:hover {
+  background-color:#ddd;
+}
+
+/* Add a color to the active/current link */
+nav a.active {
+  background-color: rgb(52, 130, 143);
+  color: white;
+}
+/* Style the content */
+article {
+  -webkit-flex: 3;
+  -ms-flex: 3;
+  background-color: whitesmoke;
+  margin: 0 -5px;
+  padding: 10px;
+
+}
+
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.card {
+  flex: 1 0 400px;
+  box-sizing: border-box;
+  margin: 1rem .50em;
+
+}
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+
+img {
+  border-radius: 5px 5px 0 0;
+}
+
+._container {
+  padding: 10px;
+}
+
+/* Style the footer */
+footer {
+  background-color: rgb(52, 130, 143);
+  padding: 10px;
+  text-align: center;
+  color: white;
+  height: 100px;
+}
+
+@media screen and (min-width: 600px) {
+  .cards{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  .card{
+    flex: 0 1 calc(15% - 1em);
+    width: 50%;
+  }
+  nav{
+    width: 50%;
+  }
+}
+@media screen and (max-width: 360px) {
+  .cards{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  .card{
+    flex: 0 1 calc(100% - 1em);
+    width: 50%;
+  }
+  nav{
+    width: 50%;
+  }
+}
+@media screen and (max-width: 599px) and (min-width: 361px) {
+  .cards{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  .card{
+    flex: 0 1 calc(100% - 1em);
+    width: 50%;
+  }
+  nav{
+    width: 50%;
+  }
+}

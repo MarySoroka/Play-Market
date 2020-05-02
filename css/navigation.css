@@ -1,0 +1,32 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+.playMarketNavigation {
+  background-color: rgb(135, 176, 198);
+  overflow: hidden;
+}
+
+.playMarketNavigation a {
+  float: left;
+  color: rgb(75, 56, 39);
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.playMarketNavigation a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.playMarketNavigation a.active {
+  background-color: rgb(52, 130, 143);
+  color: white;
+}
+@media screen and (max-width: 300px) {
+  .playMarketNavigation {
+    width: 100%;
+  }
+}

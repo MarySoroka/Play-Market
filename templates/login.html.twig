@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" type="text/css" href="../css/style.css">
+<link rel="stylesheet" type="text/css" href="../css/navigation.css">
+<link rel="stylesheet" type="text/css" href="../css/login.css">
+<head>
+    <title>Play Market</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+<body>
+<div class="playMarketNavigation">
+    <a href="../index.php">Home</a>
+    <a href="../game.php">Games</a>
+    <a href="../movies.php">Movies</a>
+    <a href="../music.php">Music</a>
+    <a href="../book.php">Books</a>
+    {% if authorize %}
+        <a class="active" href="../logout.php" style="float: right">Log out</a>
+
+        <a href="../basket.php" style="float: right">Basket</a>
+    {% else %}
+        <a class="active" href="../login.php" style="float: right">Log in</a>
+    {% endif %}
+</div>
+<header>
+    <h2>{{ header }}</h2>
+</header>
+<section>
+    <form action={{ actionPage }} method="post">
+        <div class="container">
+            <p>Please fill in this form to {{ pageAction }} your account.</p>
+            <hr>
+            {% if not pageIsLogIn %}
+                <label for="email"><b>Email</b></label>
+                <input type="text" placeholder="Enter Email" name="email" required>
+            {% endif %}
+            <label for="login"><b>Login</b></label>
+            <input type="text" placeholder="Enter Login" name="login" required>
+
+            <label for="password"><b>Password</b></label>
+            <input type="password" placeholder="Enter Password" name="password" required>
+            <span class="registry" style="color: indianred">{{ errors }}</span><br><br>
+            {% if pageIsLogIn %}
+                <span class="registry">If you don't have account <a href="../registration.php" style="color: cornflowerblue">registry now</a></span>
+            {% endif %}
+
+            <div class="cr">
+                <button name="registry" type="submit" class="create">{{ pageName }}</button>
+            </div>
+
+        </div>
+    </form>
+
+</section>
+
+<footer>
+    <p>Play Market</p>
+</footer>
+</body>
+</html>
+
+
+
+
+

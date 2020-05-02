@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" type="text/css" href="../css/style.css">
+<link rel="stylesheet" type="text/css" href="../css/navigation.css">
+<link rel="stylesheet" type="text/css" href="../css/login.css">
+<link rel="stylesheet" type="text/css" href="../css/product.css">
+
+<head>
+    <title>Play Market</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+<body>
+<div class="playMarketNavigation">
+    <a href="../index.php">Home</a>
+    <a href="../game.php">Games</a>
+    <a href="../movies.php">Movies</a>
+    <a href="../music.php">Music</a>
+    <a href="../book.php">Books</a>
+
+    {% if authorize %}
+        <a href="../logout.php" style="float: right">Log out</a>
+        {% if admin %}
+            <a class="active" href="../admin.php" style="float: right">Admin</a>
+        {% else %}
+            <a class="active" href="../basket.php" style="float: right">Basket</a>
+        {% endif %}
+    {% else %}
+        <a href="../login.php" style="float: right">Log in</a>
+    {% endif %}
+</div>
+<header>
+    <h2>{{ header }}</h2>
+</header>
+<section>
+    <div class="shopping-cart">
+        <!-- Title -->
+        <div class="title">
+            Your products, {{ userName }}
+        </div>
+        {% if not admin %}
+            <form action="../basket.php" method="post">
+                <div class="container">
+                    <p>Please fill in this form to create an order.</p>
+                    <hr>
+
+                    {% for t in phoneType %}
+                        <u style="color: #4CAF50">{{ t }}</u><br>
+                    {% endfor %}
+                    <label><b>Phone</b></label>
+                    <input type="text" placeholder="Enter Phone" name="phone" required>
+
+                    {% for m in mobilePhone %}
+                        <u>{{ m }}</u><br>
+                    {% endfor %}
+                    {% for c in cityPhone %}
+                        <label>{{ c }}</label><br>
+                    {% endfor %}
+                    <div class="cr">
+                        <button name="create" type="submit" class="cr">Create</button>
+                    </div>
+                </div>
+            </form>
+        {% endif %}
+        {% for product in products %}
+            <div class="item">
+                <form action={{ actionPage }} method="post">
+                    <div class="buttons">
+                        <button name="delete" class="delete-btn" type="submit"></button>
+                    </div>
+                    <input type="hidden" name="product_id" value="{{ product.id }}">
+                </form>
+                <div class="image">
+                    <img src={{ product.image }} alt=""/>
+                </div>
+                <div class="description">
+                    {% if admin %}
+                        <form action={{ actionPage }} method="post">
+                            <label><b>Name</b></label>
+                            <input type="text" name="name" value="{{ product.name }}" required>
+                            <label><b>Genre</b></label>
+                            <input type="text" name="genre" value="{{ product.genre }}" required>
+                            <label><b>Cost</b></label>
+                            <input type="text" name="cost" value="{{ product.cost }}" required>
+                            <input type="hidden" name="id" value="{{ product.id }}" required>
+                            <div class="cr">
+                                <button name="save" type="submit" class="cr">Save</button>
+                            </div>
+                        </form>
+                    {% else %}
+                        <span>{{ product.name }}</span>
+                        <span></span>
+                        <span>{{ product.genre }}</span>
+                    {% endif %}
+
+                </div>
+                {% if not admin %}
+                    <div class="total-price">${{ product.cost }}</div>
+                {% endif %}
+
+            </div>
+        {% endfor %}
+
+    </div>
+
+
+</section>
+
+<footer>
+    <p>Play Market</p>
+</footer>
+</body>
+</html>
+
+
+
+
+

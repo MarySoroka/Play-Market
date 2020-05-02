@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" type="text/css" href="../css/style.css">
+<link rel="stylesheet" type="text/css" href="../css/navigation.css">
+<link rel="stylesheet" type="text/css" href="../css/login.css">
+
+<head>
+    <title>Play Market</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+<body>
+<div class="playMarketNavigation">
+    {% for page in pages %}
+        {% if page.active %}
+            <a class="active" href="{{ page.url }}">{{ page.name }}</a>
+        {% else %}
+            <a href="{{ page.url }}">{{ page.name }}</a>
+        {% endif %}
+    {% endfor %}
+    {% if authorize %}
+        <a href="../logout.php" style="float: right">Log out</a>
+        {% if admin %}
+            <a  href="../admin.php" style="float: right">Admin</a>
+        {% else %}
+            <a  href="../basket.php" style="float: right">Basket</a>
+        {% endif %}
+    {% else %}
+        <a href="../login.php" style="float: right">Log in</a>
+    {% endif %}
+</div>
+<header>
+    <h2>{{ header }}</h2>
+</header>
+
+<section>
+    {% if home %}
+        <nav>
+            <ul class="__section-movies">
+                {% for genre in genres %}
+                    <li><a href="#home">{{ genre }}</a></li>
+                {% endfor %}
+            </ul>
+        </nav>
+    {% endif %}
+    <div class="centered">
+        <section class="cards">
+            {% for product in products %}
+                <article class="card">
+                    <img src="{{ product.image }}" alt="Avatar" style="width:100%">
+                    <div class="_container">
+                        <h4><b>{{ product.name }}</b></h4>
+                        <p>{{ product.genre }}</p>
+                        <p>${{ product.cost }}</p>
+                    </div>
+                    {% if authorize and not admin %}
+                        <form action={{ actionPage }} method="post">
+                            <div class="_cr">
+                                <button name="add" type="submit" class="cr">Add</button>
+                            </div>
+                            <input type="hidden" name="product_id" value="{{ product.id }}">
+                        </form>
+                    {% endif %}
+                </article>
+            {% endfor %}
+        </section>
+    </div>
+</section>
+<footer class="footer">
+    <p>Play Market</p>
+</footer>
+
+</body>
+</html>
+
+
+
+
